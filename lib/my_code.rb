@@ -1,19 +1,27 @@
 # Your Code Here
-def map(source_array)
-new_array  = []
-i = 0 
-  while i <  source_array.length do  
-    new_array << yield 
+def map(s)
+  new_array = []
+  i = 0
+  while i < s.length
+    new_array << (yield(s[i]))
     i += 1
-  end 
-end 
+  end
+  new_array
+end
 
-map(source_array){|n| -1 * n}
-
-map(source_array){|n| n}
-
-map(source_array){|n| n * 2}
-
-map(source_array){|n| n** 2}
+def reduce(s, sp=nil)
+  if sp
+    accum = sp
+    i = 0
+  else
+    accum = s[0]
+    i = 1
+  end
+  while i < s.length
+    accum = yield(accum, s[i])
+    i += 1
+  end
+  accum
+end
 
 
